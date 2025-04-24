@@ -55,23 +55,19 @@ export class FraudCodeService {
     return { duplicated, nonDuplicated };
   }
 
-  async getByValue(
-    value: string,
-  ): Promise<{ responseData: FraudCodeEntity | null }> {
+  async getByValue(value: string): Promise<FraudCodeEntity | null> {
     const code = await this.fraudCodeRepository.findOne({
       where: { value: value },
     });
-    return { responseData: code };
+    return code;
   }
 
-  async update(
-    newCode: FraudCodeEntity,
-  ): Promise<{ responseData: FraudCodeEntity | undefined }> {
-    const code = (await this.getByValue(newCode.value)).responseData;
+  async update(newCode: FraudCodeEntity): Promise<FraudCodeEntity | undefined> {
+    const code = await this.getByValue(newCode.value);
     if (code) {
       const _newCode = this.fraudCodeRepository.merge(code, newCode);
-      return { responseData: await this.fraudCodeRepository.save(_newCode) };
+      return await this.fraudCodeRepository.save(_newCode);
     }
-    return { responseData: undefined };
+    return;
   }
 }

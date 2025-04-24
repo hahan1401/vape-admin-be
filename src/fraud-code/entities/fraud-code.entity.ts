@@ -2,15 +2,18 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('fraud_codes')
 export class FraudCodeEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column()
   value: string;
 
-  @Column()
-  createdDate: string;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdDate: Date;
 
-  @Column({ default: null })
-  usedDate: string;
+  @Column({ default: false })
+  isUsed: boolean;
+
+  @Column({ type: 'timestamp', nullable: true, onUpdate: 'CURRENT_TIMESTAMP' })
+  usedDate: Date;
 }

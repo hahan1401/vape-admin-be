@@ -31,7 +31,7 @@ import { FraudCodeModule } from './fraud-code/fraud-code.module';
           port: Number(process.env.SQL_PORT),
           username: process.env.SQL_USERNAME,
           password: process.env.SQL_PASSWORD,
-          database: 'fraud_codes',
+          database: 'vape_store',
           synchronize: true,
           entities: [__dirname + '/**/*.entity{.ts,.js}'],
         };

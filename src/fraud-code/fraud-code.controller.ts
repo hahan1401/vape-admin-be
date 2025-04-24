@@ -18,11 +18,13 @@ export class FraudCodeController {
 
   @Get('/find-by-value/:value')
   async getByValue(@Param('value') value: string) {
-    return this.fraudCodeService.getByValue(value);
+    const data = await this.fraudCodeService.getByValue(value);
+    return { responseData: data };
   }
 
   @Put('/')
   async update(@Body() code: FraudCodeEntity) {
-    return this.fraudCodeService.update(code);
+    const data = await this.fraudCodeService.update(code);
+    return { responseData: data };
   }
 }

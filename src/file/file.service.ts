@@ -14,7 +14,6 @@ export class FileService {
       responseData: data.map(
         (item) =>
           ({
-            createdDate: item.creat_time,
             value: item.value,
           }) as FraudCodeEntity,
       ),
