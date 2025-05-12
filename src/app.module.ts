@@ -24,6 +24,7 @@ import { FraudCodeModule } from './fraud-code/fraud-code.module';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule, DatabaseModule],
       useFactory: async (databaseService: DatabaseService) => {
+        console.log('process.env', process.env)
         await databaseService.initializeDatabase();
         return {
           type: 'mysql',
@@ -44,4 +45,4 @@ import { FraudCodeModule } from './fraud-code/fraud-code.module';
   controllers: [AppController, FileController],
   providers: [AppService, FileService],
 })
-export class AppModule {}
+export class AppModule { }
