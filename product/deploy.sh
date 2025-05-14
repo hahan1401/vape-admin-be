@@ -12,4 +12,4 @@ echo "Syncing dist..."
 rsync -az --delete -e "ssh -i $KEY_PATH" dist/ $USER@$HOST:$REMOTE_DIR/dist
 
 echo "Restarting PM2 app on remote server..."
-ssh -i "$KEY_PATH" $USER@$HOST "pm2 restart vape-admin-be"
+ssh -i "$KEY_PATH" $USER@$HOST "pm2 startOrRestart vape-admin-be"
