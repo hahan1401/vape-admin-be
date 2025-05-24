@@ -4,7 +4,7 @@ import { createConnection } from 'mysql2/promise';
 
 @Injectable()
 export class DatabaseService {
-  constructor(private configService: ConfigService) {}
+  constructor(private configService: ConfigService) { }
   async initializeDatabase() {
     const connection = await createConnection({
       host: this.configService.get<string>('SQL_HOST'),
@@ -13,8 +13,8 @@ export class DatabaseService {
       password: this.configService.get<string>('SQL_PASSWORD'),
     });
 
-    await connection.query(`CREATE DATABASE IF NOT EXISTS vape_store`);
-    await connection.query(`USE vape_store`);
+    await connection.query(`CREATE DATABASE IF NOT EXISTS vape_store_fraud_codes`);
+    await connection.query(`USE vape_store_fraud_codes`);
     // await connection.query(`
     //   CREATE TABLE IF NOT EXISTS fraud_codes (
     //     id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
